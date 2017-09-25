@@ -3,12 +3,30 @@
 
 using std::cout;
 
+Person::Person()
+{ }
+
+Person::Person( int pAge, float pHeight, int pWeight, std::string pName, std::string pHairColor, std::string pEyeColor)
+{
+	name = pName;
+	age = pAge;
+	height = pHeight / 12.f;
+	weight = pWeight;
+	hairColor = pHairColor;
+	eyeColor = pEyeColor;
+}
+
 void Person::Greeting(Person person)
 {
 	cout << "Hello, " << person.name << "!\n";
 	printf("You are %d years old, and are %.1f feet tall!\n", person.age, person.height);
 	printf("You weigh approx. %d lbs!\n", person.weight);
 	cout << "Finally, you have " << person.hairColor << " hair, and " << person.eyeColor << " eyes!\n";
+}
+
+void Person::Greeting()
+{
+	cout << "Hello, " << name << "!\n";
 }
 
 void Person::SetAttributes(Person &person, int age, float height, int weight, std::string name, std::string hairColor, std::string eyeColor)
@@ -19,6 +37,36 @@ void Person::SetAttributes(Person &person, int age, float height, int weight, st
 	person.name = name;
 	person.hairColor = hairColor;
 	person.eyeColor = eyeColor;
+}
+
+void Person::SetName(Person &person, std::string name)
+{
+	person.name = name;
+}
+
+void Person::SetAge(Person &person, int age)
+{
+	person.age = age;
+}
+
+void Person::SetHeight(Person &person, float height)
+{
+	person.height = height / 12.f;
+}
+
+void Person::SetWeight(Person &person, int weight)
+{
+	person.weight = weight;
+}
+
+void Person::SetHairColor(Person &person, std::string color)
+{
+	person.hairColor = color;
+}
+
+void Person::SetEyeColor(Person &person, std::string color)
+{
+	person.eyeColor = color;
 }
 
 std::string Person::GetName(Person person)

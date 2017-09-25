@@ -112,9 +112,15 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Piggy.cpp" />
+    <ClCompile Include="Server.cpp" />
+    <ClCompile Include="Television.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Piggy.h" />
+    <ClInclude Include="Server.h" />
+    <ClInclude Include="Television.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
