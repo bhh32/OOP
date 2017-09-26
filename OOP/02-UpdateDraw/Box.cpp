@@ -3,11 +3,6 @@
 
 void Box::Draw()
 {
-	/*sfw::drawLine(startXSide1, startYSide1, endXSide1, endYSide1);
-	sfw::drawLine(startXSide2, startYSide2, endXSide2, endYSide2);
-	sfw::drawLine(startXSide3, startYSide3, endXSide3, endYSide3);
-	sfw::drawLine(startXSide4, startYSide4, endXSide4, endYSide4);*/
-
 	sfw::drawLine(bottomLeftX, bottomLeftY, topRightX, bottomLeftY);
 	sfw::drawLine(topRightX, bottomLeftY, topRightX, topRightY);
 	sfw::drawLine(topRightX, topRightY, bottomLeftX, topRightY);

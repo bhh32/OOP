@@ -75,7 +75,7 @@ int main()
 		//Update Stuff
 		/*me.Update();
 		you.Update();*/
-		box.Update();
+		box.Update(); // Spaceship update
 
 		// Draw Stuff
 		/*me.Draw();
@@ -88,7 +88,7 @@ int main()
 		box.Draw();*/
 
 		// Drawing An Image
-		sfw::drawTexture(img, box.x, box.y, 74, 50);
+		sfw::drawTexture(img, box.x, box.y, 74, 50); // Spaceship draw
 	}
 
 	// clean up
