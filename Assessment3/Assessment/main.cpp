@@ -12,7 +12,7 @@ int main()
 
 	// Make a game state object
 	GameState gs;
-	gs.Init();
+	gs.CreateObjs();
 
 
 	// Game Loop

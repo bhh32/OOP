@@ -37,7 +37,5 @@ void Player::Update()
 
 void Player::Draw()
 {
-	ship = sfw::loadTextureMap("res/spaceship-png-icon-8.png");
-
 	sfw::drawTexture(ship, x, y, 74, 50, rotation);
 }
