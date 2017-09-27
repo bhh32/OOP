@@ -12,7 +12,7 @@ int main()
 	sfw::initContext(800, 600, "Bryan's Game");
 
 	// Put Image into a variable
-	unsigned int img = sfw::loadTextureMap("res/spaceship-png-icon-8.png");
+	//unsigned int img = sfw::loadTextureMap("res/spaceship-png-icon-8.png");
 
 	// set the background color
 	sfw::setBackgroundColor(BLACK);
@@ -66,6 +66,8 @@ int main()
 
 	box.x = 400;
 	box.y = 300;
+	box.speed = 200.f;
+	box.rotation = 90.f;
 
 	// setup the game loop
 	while (sfw::stepContext())
@@ -84,11 +86,11 @@ int main()
 
 		// OPEN ACTIVITIES
 		/*circle.Draw();
-		line.Draw();
-		box.Draw();*/
+		line.Draw();*/
+		box.Draw();
 
 		// Drawing An Image
-		sfw::drawTexture(img, box.x, box.y, 74, 50); // Spaceship draw
+		//sfw::drawTexture(img, box.x, box.y, 74, 50); // Spaceship draw
 	}
 
 	// clean up

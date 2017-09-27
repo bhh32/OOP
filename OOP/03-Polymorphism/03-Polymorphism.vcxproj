@@ -130,6 +130,7 @@
     <ClCompile Include="BaseParticle.cpp" />
     <ClCompile Include="BoxParticles.cpp" />
     <ClCompile Include="CircleParticle.cpp" />
+    <ClCompile Include="Emitter.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Officer.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="BaseParticle.h" />
     <ClInclude Include="BoxParticles.h" />
     <ClInclude Include="CircleParticle.h" />
+    <ClInclude Include="Emitter.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Officer.h" />
     <ClInclude Include="Person.h" />

@@ -2,7 +2,7 @@
 
 #include "BaseParticle.h"
 
-class BoxParticles : BaseParticle
+class BoxParticles : public BaseParticle
 {
 public:
 	float bottomLeftX;

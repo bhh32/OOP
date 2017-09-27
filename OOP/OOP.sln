@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02-UpdateDraw", "02-UpdateD
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "03-Polymorphism", "03-Polymorphism\03-Polymorphism.vcxproj", "{2D3581B6-1582-427E-93E7-4EA05A0804A7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "04-RuleOfThree", "04-RuleOfThree\04-RuleOfThree.vcxproj", "{476BC0F2-872F-45BA-9B2F-29100E12FF71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{2D3581B6-1582-427E-93E7-4EA05A0804A7}.Release|x64.Build.0 = Release|x64
 		{2D3581B6-1582-427E-93E7-4EA05A0804A7}.Release|x86.ActiveCfg = Release|Win32
 		{2D3581B6-1582-427E-93E7-4EA05A0804A7}.Release|x86.Build.0 = Release|Win32
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Debug|x64.ActiveCfg = Debug|x64
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Debug|x64.Build.0 = Debug|x64
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Debug|x86.ActiveCfg = Debug|Win32
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Debug|x86.Build.0 = Debug|Win32
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Release|x64.ActiveCfg = Release|x64
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Release|x64.Build.0 = Release|x64
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Release|x86.ActiveCfg = Release|Win32
+		{476BC0F2-872F-45BA-9B2F-29100E12FF71}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

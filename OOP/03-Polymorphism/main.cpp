@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "CircleParticle.h"
 #include "BoxParticles.h"
+#include "Emitter.h"
 
 int main()
 {
@@ -34,34 +35,63 @@ int main()
 
 	/** OPEN ACTIVITIES **/
 	srand(time(NULL));
-	int randX = 0;
-	int randY = 0;
-	int randSpeed = 0;
+	float randX = 0;
+	float randY = 0;
+	float randSpeed = 0;
+	float randDirMaxX = 0;
+	float randDirMinX = 0;
+	float randDirMaxY = 0;
+	float randDirMinY = 0;
 
-	CircleParticle circParticles[50];
+	CircleParticle circParticles[100];
 
-	for (int i = 0; i < 50; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		randX = rand() % 400 + 1;
 		randY = rand() % 400 + 1;
-		randSpeed = rand() % 20 + 1;
+		randSpeed = rand() % 25 + 1;
+		randDirMaxX = rand() % 500 + 1;
+		randDirMinX = rand() % 50 + 1;
+		randDirMaxY = rand() % 500 + 1;
+		randDirMinY = rand() % 50 + 1;
+
 
 		circParticles[i].posX = randX;
 		circParticles[i].posY = randY;
 		circParticles[i].rad = 5;
 		circParticles[i].speedX = randSpeed;
 		circParticles[i].speedY = randSpeed;
+		circParticles[i].dirRangeMaxX = randDirMaxX;
+		circParticles[i].dirRangeMinX = randDirMinX;
+		circParticles[i].dirRangeMaxY = randDirMaxY;
+		circParticles[i].dirRangeMinY = randDirMinY;
 	}
 
-	BoxParticles boxParticles[50];
+	BoxParticles boxParticles[100];
 
-	boxParticles[0].bottomLeftX = 600;
-	boxParticles[0].bottomLeftY = 400;
-	boxParticles[0].topRightX = 610;
-	boxParticles[0].topRightY = 410;
+	for (int i = 0; i < 100; i++)
+	{
+		randX = rand() % 500 + 1;
+		randY = rand() % 500 + 1;
+		randSpeed = rand() % 25 + 1;
+		randDirMaxX = rand() % 500 + 1;
+		randDirMinX = rand() % 50 + 1;
+		randDirMaxY = rand() % 500 + 1;
+		randDirMinY = rand() % 50 + 1;
 
-	boxParticles[0].speed = 20;
+		boxParticles[i].bottomLeftX = randX;
+		boxParticles[i].bottomLeftY = randY;
+		boxParticles[i].topRightX = randX + 10;
+		boxParticles[i].topRightY = randY + 10;
+		boxParticles[i].dirRangeMaxX = randDirMaxX;
+		boxParticles[i].dirRangeMinX = randDirMinX;
+		boxParticles[i].dirRangeMaxY = randDirMaxY;
+		boxParticles[i].dirRangeMinY = randDirMinY;
 
+		boxParticles[i].speed = randSpeed;
+	}
+	Emitter emitter;
+	emitter.spawnInterval = 3.f;
 
 	while (sfw::stepContext())
 	{
@@ -73,18 +103,19 @@ int main()
 		/** OPEN ACTIVITIES **/
 
 		// Circle Particles
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			circParticles[i].Update();
-			
+			boxParticles[i].Update();
 		}
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			circParticles[i].Draw();
+			boxParticles[i].Draw();
 		}
-		boxParticles[0].Update();
-		boxParticles[0].Draw();
+		
+		
 	}
 
 	return 0;

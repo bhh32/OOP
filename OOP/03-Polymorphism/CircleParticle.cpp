@@ -5,7 +5,13 @@
 
 void CircleParticle::Update()
 {
-	posX += speedX * sfw::getDeltaTime();;
+	if (posX >= dirRangeMaxX || posX <= dirRangeMinX)
+		speedX *= -1;
+
+	if (posY >= dirRangeMaxY || posY <= dirRangeMinY)
+		speedY *= -1;
+
+	posX += speedX * sfw::getDeltaTime();
 	posY += speedY * sfw::getDeltaTime();
 }
 
