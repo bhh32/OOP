@@ -4,6 +4,8 @@
 class Character
 {
 public:
+
+	int hp;
 	float x, y;
 	float speed;
 	float rotation;

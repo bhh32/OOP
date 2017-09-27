@@ -140,6 +140,7 @@
     <ClCompile Include="Bullets.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EnemyStage1.cpp" />
+    <ClCompile Include="EnemyStage2.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Bullets.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EnemyStage1.h" />
+    <ClInclude Include="EnemyStage2.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
