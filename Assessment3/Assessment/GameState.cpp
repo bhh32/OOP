@@ -9,12 +9,13 @@ void GameState::Init()
 	player.y = 0;
 	player.rotation = 0;
 	player.speed = 100.f;
+	player.fireDelay = .5f;
 	player.firedShot = false;
 	player.upKey = 'W';
 	player.downKey = 'S';
 	player.rightKey = 'D';
 	player.leftKey = 'A';
-	player.shotKey = 'F';
+	player.shotKey = VK_SPACE;
 
 	// Create the bullets
 	for (int i = 0; i < 100; ++i)
@@ -30,7 +31,7 @@ void GameState::BulletInit(Bullets &currentBullet)
 	currentBullet.y = player.y + 2;
 	currentBullet.initShot = false;
 	currentBullet.beenShot = true;
-	currentBullet.speed = 1000 * sfw::getDeltaTime();
+	currentBullet.speed = 3000 * sfw::getDeltaTime();
 }
 
 void GameState::Spawn()

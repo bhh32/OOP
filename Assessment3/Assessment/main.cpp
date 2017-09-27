@@ -5,7 +5,7 @@
 int main()
 {
 	// Create a window and a drawing context
-	sfw::initContext(800, 600, "Bryan: Space Rouge");
+	sfw::initContext(1240, 860, "Bryan: Space Rouge");
 
 	// Set the window background
 	sfw::setBackgroundColor(BLACK);

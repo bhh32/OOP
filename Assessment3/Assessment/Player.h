@@ -6,6 +6,7 @@ class Player : public Character
 {
 public:
 	char shotKey;
+	float fireDelay;
 	bool firedShot;
 
 	virtual void Update() override;

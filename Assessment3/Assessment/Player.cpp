@@ -6,31 +6,32 @@ void Player::Update()
 {
 	if (sfw::getKey(upKey))
 	{
-		if (y < 600)
-			y += speed * sfw::getDeltaTime();
+		y += speed * sfw::getDeltaTime();
 	}
 
 	if (sfw::getKey(downKey))
 	{
-		if (y > 25)
-			y -= speed * sfw::getDeltaTime();
+		y -= speed * sfw::getDeltaTime();
 	}
 
 	if (sfw::getKey(rightKey))
 	{
-		if (x < 800 - 25)
-			x += speed * sfw::getDeltaTime();
+		x += speed * sfw::getDeltaTime();
 	}
 
 	if (sfw::getKey(leftKey))
 	{
-		if (x > 25)
-			x -= speed * sfw::getDeltaTime();
+		x -= speed * sfw::getDeltaTime();
 	}
 
 	if (sfw::getKey(shotKey))
 	{
-		firedShot = true;
+		fireDelay -= .1f;
+		if (fireDelay <= 0)
+		{
+			firedShot = true;
+			fireDelay = .5f;
+		}
 	}
 }
 

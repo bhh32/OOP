@@ -15,6 +15,6 @@ void Bullets::Draw()
 {
 	if (lifeTime >= 0)
 	{
-		sfw::drawLine(x, y, x + 10, y + 10);
+		sfw::drawCircle(x, y, 1);
 	}
 }
