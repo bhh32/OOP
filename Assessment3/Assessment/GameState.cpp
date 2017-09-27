@@ -201,12 +201,12 @@ void GameState::Draw()
 bool GameState::PlayerEnemyCollision(EnemyStage1 &currentEnemyS1)
 {
 	float rad = (player.x + 2 - currentEnemyS1.x) * (player.x + 2 - currentEnemyS1.x) + (player.y - currentEnemyS1.y) * (player.y - currentEnemyS1.y);
-	return rad < 10;
+	return rad < 800;
 }
 
 // Tests for bullet and enemy collision
 bool GameState::EnemyBulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1)
 {
 	float rad = (currentBullet.x - currentEnemyS1.x) * (currentBullet.x - currentEnemyS1.x) + (currentBullet.y - currentEnemyS1.y) * (currentBullet.y - currentEnemyS1.y);
-	return rad < 76;
+	return rad < 80;
 }
