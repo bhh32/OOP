@@ -1,7 +1,9 @@
 #include <iostream>
 #include <Windows.h> // Used for Sleep
+#include <process.h>
 #include "sfwdraw.h"
 #include "GameState.h"
+#include <direct.h>
 
 int main()
 {
@@ -15,10 +17,10 @@ int main()
 	GameState gs;
 	gs.CreateObjs();
 
-
 	// Game Loop
 	while (sfw::stepContext())
 	{
+		
 		// Check to see if the game is over
 		if (gs.isGameOver)
 		{
@@ -32,6 +34,6 @@ int main()
 		gs.Update();
 
 		// Draw Stuff
-		gs.Draw();		
+		gs.Draw();
 	}
 }

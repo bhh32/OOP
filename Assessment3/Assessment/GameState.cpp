@@ -26,6 +26,13 @@ void GameState::CreateObjs()
 	// Create String Font Map For String Draw
 	stringFontMap = sfw::loadTextureMap("res/fontmap_360.png", 16, 16);
 
+	// Load sounds
+	gameOverSound = sfw::loadSound("res/gameOver.wav");
+	backgroundMusic = sfw::loadSound("res/Retro2 120.wav");
+
+	// Play background music
+	sfw::playSound(backgroundMusic, true);
+
 	// Create the bullets
 	for (int i = 0; i < 100; ++i)
 	{
@@ -74,8 +81,7 @@ void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemy
 	currentEnemyS1.startX = currentEnemyS1.x;
 	currentEnemyS1.velX = -1;
 	currentEnemyS1.speedX = 20;
-	currentEnemyS1.speedY = 8;
-	currentEnemyS1.playDeath = false;
+	currentEnemyS1.speedY = 20;
 
 	if (player.score > 15)
 	{
@@ -87,8 +93,7 @@ void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemy
 		currentEnemyS2.startX = currentEnemyS1.x;
 		currentEnemyS2.velX = -1;
 		currentEnemyS2.speedX = 20;
-		currentEnemyS2.speedY = 10;
-		currentEnemyS2.playDeath = false;
+		currentEnemyS2.speedY = 24;
 	}
 }
 
@@ -107,7 +112,6 @@ void GameState::Spawn()
 				break;
 			}
 		}
-
 		player.firedShot = false;
 	}
 
@@ -160,6 +164,8 @@ void GameState::Collision()
 						bullets[j].lifeTime = 0;
 						enemyS1[i].isAlive = false;
 						player.score++;
+						exp.EnemyStage1ExplosionUpdate(enemyS1[i]);
+						exp.EnemyStage1ExplosionDraw(enemyS1[i]);
 					}
 				}
 			
@@ -171,6 +177,8 @@ void GameState::Collision()
 					bullets[j].lifeTime = 0;
 					enemyS2[i].isAlive = false;
 					player.score += 2;
+					exp.EnemyStage2ExplosionUpdate(enemyS2[i]);
+					exp.EnemyStage2ExplosionDraw(enemyS2[i]);
 				}
 			}
 		}
@@ -205,8 +213,9 @@ void GameState::Collision()
 					enemyS2[i].isAlive = false;
 
 					if (player.lives > 0)
+					{
 						player.lives--;
-
+					}
 					if (player.lives <= 0)
 					{
 						player.isDead = true;
@@ -264,6 +273,8 @@ void GameState::Update()
 		gameOverText = "Game Over!";
 		isGameOver = true;
 	}
+
+	
 }
 
 void GameState::Draw()
@@ -290,15 +301,17 @@ void GameState::Draw()
 
 	// Draw the player score
 	sfw::drawString(stringFontMap, pScoreText.c_str(), 1100, 850, 15, 15);
-	sfw::drawString(stringFontMap, pScoreString.c_str(), 1200, 850, 15, 15);
+	sfw::drawString(stringFontMap, pScoreString.c_str(), 1195, 850, 15, 15);
 
 	// Draw the player lives
 	sfw::drawString(stringFontMap, pLivesText.c_str(), 10, 850, 15, 15);
 	sfw::drawString(stringFontMap, pLivesString.c_str(), 110, 850, 15, 15);
 
+	// Draw Game Over
 	if (isGameOver)
 	{
 		sfw::drawString(stringFontMap, gameOverText.c_str(), 600, 430, 15, 15);
+		sfw::playSound(gameOverSound, false);
 	}
 }
 

@@ -33,6 +33,17 @@ void Player::Update()
 			fireDelay = .5f;
 		}
 	}
+
+	if (x > 1240 - 25)
+		x = 1240 - 25;
+	else if (x < 25)
+		x = 25;
+
+	if (y > 860 - 25)
+		y = 860 - 25;
+	else if (y < 25)
+		y = 25;
+
 }
 
 void Player::Draw()

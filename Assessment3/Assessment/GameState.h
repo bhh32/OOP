@@ -2,8 +2,7 @@
 
 #include "Player.h"
 #include "Bullets.h"
-#include "EnemyStage1.h"
-#include "EnemyStage2.h"
+#include "Explosions.h" // Both Enemy header files are contained in this one
 #include <string>
 
 class GameState
@@ -24,19 +23,28 @@ private:
 	Bullets bullets[100];
 	EnemyStage1 enemyS1[100];
 	EnemyStage2 enemyS2[100];
+	Explosions exp;
 
-	// Variables
+	// Timer Variables
 	float enemyTimer;
 	float enemyDelay;
+
+	// Text & Img Variables
 	unsigned int stringFontMap;
+	
 	std::string pScoreText;
 	std::string pScoreString;
 	std::string pLivesText;
 	std::string pLivesString;
 	std::string gameOverText;
 
+	// Sound Variables
+	unsigned int gameOverSound;
+	unsigned int backgroundMusic;
+
 	// Collision Functions
 	void Collision();
+	
 	bool PlayerEnemyStage1Collision(EnemyStage1 &currentEnemyS1);
 	bool PlayerEnemyStage2Collision(EnemyStage2 &currentEnemyS2);
 	bool EnemyStage1BulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1);

@@ -6,7 +6,7 @@ class EnemyStage1 : public Character
 {
 public:
 
-
+	int explosionCount = 0;
 	bool isAlive;
 	bool playDeath;
 	float opRange;
