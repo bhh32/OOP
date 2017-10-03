@@ -1,6 +1,8 @@
 #include "GameState.h"
 #include "sfwdraw.h"
 #include <Windows.h> // Used for the fire button only
+#include <iostream>
+
 
 void GameState::CreateObjs()
 {
@@ -20,6 +22,9 @@ void GameState::CreateObjs()
 	player.rightKey = 'D';
 	player.leftKey = 'A';
 	player.shotKey = VK_SPACE;
+
+	// Create String Font Map For String Draw
+	stringFontMap = sfw::loadTextureMap("res/fontmap_360.png", 16, 16);
 
 	// Create the bullets
 	for (int i = 0; i < 100; ++i)
@@ -61,19 +66,16 @@ void GameState::BulletInit(Bullets &currentBullet)
 void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2)
 {
 	// Initiate and new enemy
-	if (player.score <= 15)
-	{
-		currentEnemyS1.isAlive = true;
-		currentEnemyS1.hp = 1;
-		currentEnemyS1.opRange = rand() % 10;
-		currentEnemyS1.x = rand() % 1240;
-		currentEnemyS1.y = 800;
-		currentEnemyS1.startX = currentEnemyS1.x;
-		currentEnemyS1.velX = -1;
-		currentEnemyS1.speedX = 20;
-		currentEnemyS1.speedY = 4;
-		currentEnemyS1.playDeath = false;
-	}
+	currentEnemyS1.isAlive = true;
+	currentEnemyS1.hp = 1;
+	currentEnemyS1.opRange = rand() % 10;
+	currentEnemyS1.x = rand() % 1240;
+	currentEnemyS1.y = 800;
+	currentEnemyS1.startX = currentEnemyS1.x;
+	currentEnemyS1.velX = -1;
+	currentEnemyS1.speedX = 20;
+	currentEnemyS1.speedY = 8;
+	currentEnemyS1.playDeath = false;
 
 	if (player.score > 15)
 	{
@@ -82,10 +84,10 @@ void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemy
 		currentEnemyS2.opRange = rand() % 10;
 		currentEnemyS2.x = rand() % 1240;
 		currentEnemyS2.y = 800;
-		currentEnemyS2.startX = currentEnemyS2.x;
+		currentEnemyS2.startX = currentEnemyS1.x;
 		currentEnemyS2.velX = -1;
 		currentEnemyS2.speedX = 20;
-		currentEnemyS2.speedY = 4;
+		currentEnemyS2.speedY = 10;
 		currentEnemyS2.playDeath = false;
 	}
 }
@@ -116,21 +118,18 @@ void GameState::Spawn()
 	{
 		for (int i = 0; i < 100; ++i)
 		{
-			if (player.score <= 3)
+			if (!enemyS1[i].isAlive)
 			{
-				if (!enemyS1[i].isAlive)
-				{
-					EnemyInit(enemyS1[i], enemyS2[i]);
+				EnemyInit(enemyS1[i], enemyS2[i]);
 
-					enemyTimer = enemyDelay;
+				enemyTimer = enemyDelay;
 
-					enemyDelay *= 0.98f;
+				enemyDelay *= 0.98f;
 
-					break;
-				}
+				break;
 			}
 
-			if (player.score > 3)
+			if (player.score > 15)
 			{
 				if (!enemyS2[i].isAlive)
 				{
@@ -156,7 +155,7 @@ void GameState::Collision()
 		{
 				if (bullets[j].lifeTime > 0 && enemyS1[i].isAlive)
 				{
-					if (EnemyBulletCollision(bullets[j], enemyS1[i], enemyS2[i]))
+					if (EnemyStage1BulletCollision(bullets[j], enemyS1[i]))
 					{
 						bullets[j].lifeTime = 0;
 						enemyS1[i].isAlive = false;
@@ -164,28 +163,26 @@ void GameState::Collision()
 					}
 				}
 			
-			if (player.score > 15)
+		// Check for bullet/enemy (Stage 2) collision
+			if (bullets[j].lifeTime > 0 && enemyS2[i].isAlive)
 			{
-				if (bullets[j].lifeTime > 0 && enemyS2[i].isAlive)
+				if (EnemyStage2BulletCollision(bullets[j], enemyS2[i]))
 				{
-					if (EnemyBulletCollision(bullets[j], enemyS1[i], enemyS2[i]))
-					{
-						bullets[j].lifeTime = 0;
-						enemyS2[i].isAlive = false;
-						player.score++;
-					}
+					bullets[j].lifeTime = 0;
+					enemyS2[i].isAlive = false;
+					player.score += 2;
 				}
 			}
 		}
 	}
 
 
-	// Check for player / enemy (Stage 1) collision
+	// Check for player / enemy collision
 	for (int i = 0; i < 100; ++i)
 	{
 		if (enemyS1[i].isAlive)
 		{
-			if (PlayerEnemyCollision(enemyS1[i]))
+			if (PlayerEnemyStage1Collision(enemyS1[i]))
 			{
 				enemyS1[i].isAlive = false;
 
@@ -200,6 +197,23 @@ void GameState::Collision()
 					break;
 				}
 			}
+
+			if (enemyS2[i].isAlive)
+			{
+				if (PlayerEnemyStage2Collision(enemyS2[i]))
+				{
+					enemyS2[i].isAlive = false;
+
+					if (player.lives > 0)
+						player.lives--;
+
+					if (player.lives <= 0)
+					{
+						player.isDead = true;
+						break;
+					}
+				}
+			}
 		}
 	}
 }
@@ -208,11 +222,11 @@ void GameState::Update()
 {
 	// Update Player
 	player.Update();
-	
+
 	// Update Active Bullets
 	for (int i = 0; i < 100; ++i)
 	{
-		if(bullets[i].lifeTime >= 0)
+		if (bullets[i].lifeTime >= 0)
 			bullets[i].Update();
 	}
 
@@ -235,6 +249,21 @@ void GameState::Update()
 
 	// Spawn New Bullets and Enemies
 	Spawn();
+
+	pScoreText = "Score:";
+	pScoreString = std::to_string(player.score);
+
+	pLivesText = "Lives:";
+	pLivesString = std::to_string(player.lives);
+
+	
+
+	// If the player is dead the game is over
+	if (player.isDead)
+	{
+		gameOverText = "Game Over!";
+		isGameOver = true;
+	}
 }
 
 void GameState::Draw()
@@ -258,17 +287,42 @@ void GameState::Draw()
 		if (enemyS2[i].isAlive)
 			enemyS2[i].Draw();
 	}
+
+	// Draw the player score
+	sfw::drawString(stringFontMap, pScoreText.c_str(), 1100, 850, 15, 15);
+	sfw::drawString(stringFontMap, pScoreString.c_str(), 1200, 850, 15, 15);
+
+	// Draw the player lives
+	sfw::drawString(stringFontMap, pLivesText.c_str(), 10, 850, 15, 15);
+	sfw::drawString(stringFontMap, pLivesString.c_str(), 110, 850, 15, 15);
+
+	if (isGameOver)
+	{
+		sfw::drawString(stringFontMap, gameOverText.c_str(), 600, 430, 15, 15);
+	}
 }
 
 // Tests for the player and enemy collision
-bool GameState::PlayerEnemyCollision(EnemyStage1 &currentEnemyS1)
+bool GameState::PlayerEnemyStage1Collision(EnemyStage1 &currentEnemyS1)
 {
 	float rad = (player.x + 2 - currentEnemyS1.x) * (player.x + 2 - currentEnemyS1.x) + (player.y - currentEnemyS1.y) * (player.y - currentEnemyS1.y);
 	return rad < 800;
 }
 
+bool GameState::PlayerEnemyStage2Collision(EnemyStage2 &currentEnemyS2)
+{
+	float rad = (player.x + 2 - currentEnemyS2.x) * (player.x + 2 - currentEnemyS2.x) + (player.y - currentEnemyS2.y) * (player.y - currentEnemyS2.y);
+	return rad < 800;
+}
+
+bool GameState::EnemyStage2BulletCollision(Bullets & currentBullet, EnemyStage2 & currentEnemyS2)
+{
+	float rad = (currentBullet.x - currentEnemyS2.x) * (currentBullet.x - currentEnemyS2.x) + (currentBullet.y - currentEnemyS2.y) * (currentBullet.y - currentEnemyS2.y);
+	return rad < 120;
+}
+
 // Tests for bullet and enemy collision
-bool GameState::EnemyBulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2)
+bool GameState::EnemyStage1BulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1)
 {
 	float rad = (currentBullet.x - currentEnemyS1.x) * (currentBullet.x - currentEnemyS1.x) + (currentBullet.y - currentEnemyS1.y) * (currentBullet.y - currentEnemyS1.y);
 	return rad < 80;

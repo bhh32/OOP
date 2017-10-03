@@ -4,28 +4,49 @@
 #include "Bullets.h"
 #include "EnemyStage1.h"
 #include "EnemyStage2.h"
+#include <string>
 
 class GameState
 {
 public:
-	Player player;
-	Bullets bullets[100];
-	EnemyStage1 enemyS1 [100];
-	EnemyStage2 enemyS2[100];
-
-	float enemyTimer;
-	float enemyDelay;
+	// Flag for game to be over
+	bool isGameOver = false;
 
 	// Initiate the characters
 	void CreateObjs();
-	void BulletInit(Bullets &currentBullet);
-	void EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2);
-	void Spawn();
-	void Collision();
 	void Update();
 	void Draw();
 
 private:
-	bool PlayerEnemyCollision(EnemyStage1 &currentEnemyS1);
-	bool EnemyBulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2);
+
+	// Character Objects
+	Player player;
+	Bullets bullets[100];
+	EnemyStage1 enemyS1[100];
+	EnemyStage2 enemyS2[100];
+
+	// Variables
+	float enemyTimer;
+	float enemyDelay;
+	unsigned int stringFontMap;
+	std::string pScoreText;
+	std::string pScoreString;
+	std::string pLivesText;
+	std::string pLivesString;
+	std::string gameOverText;
+
+	// Collision Functions
+	void Collision();
+	bool PlayerEnemyStage1Collision(EnemyStage1 &currentEnemyS1);
+	bool PlayerEnemyStage2Collision(EnemyStage2 &currentEnemyS2);
+	bool EnemyStage1BulletCollision(Bullets &currentBullet, EnemyStage1 &currentEnemyS1);
+	bool EnemyStage2BulletCollision(Bullets &currentBullet, EnemyStage2 &currentEnemyS2);
+
+
+	// Initialization Functions
+	void Spawn();
+	void BulletInit(Bullets &currentBullet);
+	void EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2);
+	
+	
 };

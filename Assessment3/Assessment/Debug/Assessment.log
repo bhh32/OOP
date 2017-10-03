@@ -1,7 +1,7 @@
 ﻿  GameState.cpp
-c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(68): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(69): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(83): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(71): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(84): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\s179058\source\repos\oop\assessment3\assessment\gamestate.cpp(85): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Assessment.vcxproj -> C:\Users\s179058\Source\Repos\OOP\Assessment3\Debug\Assessment.exe
   Assessment.vcxproj -> C:\Users\s179058\Source\Repos\OOP\Assessment3\Debug\Assessment.pdb (Partial PDB)
