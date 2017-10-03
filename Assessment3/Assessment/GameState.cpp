@@ -201,11 +201,15 @@ void GameState::Collision()
 				if (player.lives > 0)
 				{
 					player.lives--;
+					exp.EnemyStage1ExplosionUpdate(enemyS1[i]);
+					exp.EnemyStage1ExplosionDraw(enemyS1[i]);
 				}
 
 				if (player.lives <= 0)
 				{
 					player.isDead = true;
+					exp.EnemyStage1ExplosionUpdate(enemyS1[i]);
+					exp.EnemyStage1ExplosionDraw(enemyS1[i]);
 					break;
 				}
 			}
@@ -219,10 +223,14 @@ void GameState::Collision()
 					if (player.lives > 0)
 					{
 						player.lives--;
+						exp.EnemyStage1ExplosionUpdate(enemyS1[i]);
+						exp.EnemyStage1ExplosionDraw(enemyS1[i]);
 					}
 					if (player.lives <= 0)
 					{
 						player.isDead = true;
+						exp.EnemyStage1ExplosionUpdate(enemyS1[i]);
+						exp.EnemyStage1ExplosionDraw(enemyS1[i]);
 						break;
 					}
 				}
