@@ -20,7 +20,6 @@ int main()
 	// Game Loop
 	while (sfw::stepContext())
 	{
-		
 		// Check to see if the game is over
 		if (gs.isGameOver)
 		{

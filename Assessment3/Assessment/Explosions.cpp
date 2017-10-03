@@ -3,6 +3,7 @@
 
 void Explosions::EnemyStage1ExplosionUpdate(EnemyStage1 &enemyS1)
 {
+	// Play Explosion Animation
 	for (int i = 0; i < 13; ++i)
 	{
 		switch (enemyS1.explosionCount)
@@ -54,11 +55,13 @@ void Explosions::EnemyStage1ExplosionUpdate(EnemyStage1 &enemyS1)
 
 void Explosions::EnemyStage1ExplosionDraw(EnemyStage1 & enemyS1)
 {
+	// Draw Explosion Animation
 	sfw::drawTexture(explosions, enemyS1.x, enemyS1.y, 74, 74);
 }
 
 void Explosions::EnemyStage2ExplosionUpdate(EnemyStage2 & enemyS2)
 {
+	// Play Explosion Animation
 	for (int i = 0; i < 13; ++i)
 	{
 		switch (enemyS2.explosionCount)
@@ -109,5 +112,6 @@ void Explosions::EnemyStage2ExplosionUpdate(EnemyStage2 & enemyS2)
 
 void Explosions::EnemyStage2ExplosionDraw(EnemyStage2 &enemyS2)
 {
+	// Draw Explosion Animation
 	sfw::drawTexture(explosions, enemyS2.x, enemyS2.y, 74, 74);
 }

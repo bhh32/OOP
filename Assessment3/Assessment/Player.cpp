@@ -4,26 +4,31 @@
 
 void Player::Update()
 {
+	// Up Key Input
 	if (sfw::getKey(upKey))
 	{
 		y += speed * sfw::getDeltaTime();
 	}
 
+	// Down Key Input
 	if (sfw::getKey(downKey))
 	{
 		y -= speed * sfw::getDeltaTime();
 	}
 
+	// Right Key Input
 	if (sfw::getKey(rightKey))
 	{
 		x += speed * sfw::getDeltaTime();
 	}
 
+	// Left Key Input
 	if (sfw::getKey(leftKey))
 	{
 		x -= speed * sfw::getDeltaTime();
 	}
 
+	// Fire Key Input
 	if (sfw::getKey(shotKey))
 	{
 		fireDelay -= .1f;
@@ -34,6 +39,7 @@ void Player::Update()
 		}
 	}
 
+	// Create boarders along edges of screen
 	if (x > 1240 - 25)
 		x = 1240 - 25;
 	else if (x < 25)
@@ -48,5 +54,6 @@ void Player::Update()
 
 void Player::Draw()
 {
+	// Draw the player
 	sfw::drawTexture(ship, x, y, 74, 50, rotation);
 }

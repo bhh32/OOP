@@ -3,7 +3,7 @@
 #include <Windows.h> // Used for the fire button only
 #include <iostream>
 
-
+// Creates All Objects
 void GameState::CreateObjs()
 {
 	// Create the player
@@ -59,6 +59,7 @@ void GameState::CreateObjs()
 
 }
 
+// Inits Bullets
 void GameState::BulletInit(Bullets &currentBullet)
 {
 	// Initiate a new enemy
@@ -70,6 +71,7 @@ void GameState::BulletInit(Bullets &currentBullet)
 	currentBullet.speed = 4750 * sfw::getDeltaTime();
 }
 
+// Inits Enemies
 void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemyS2)
 {
 	// Initiate and new enemy
@@ -97,6 +99,7 @@ void GameState::EnemyInit(EnemyStage1 &currentEnemyS1, EnemyStage2 &currentEnemy
 	}
 }
 
+// Spawns Everything
 void GameState::Spawn()
 {
 	// Spawn Bullets
@@ -150,6 +153,7 @@ void GameState::Spawn()
 	}
 }
 
+// Does collision tests
 void GameState::Collision()
 {
 	// Check for bullet / enemy (Stage 1) collision
@@ -227,6 +231,7 @@ void GameState::Collision()
 	}
 }
 
+// Updates everything
 void GameState::Update()
 {
 	// Update Player
@@ -277,6 +282,7 @@ void GameState::Update()
 	
 }
 
+// Draws everything
 void GameState::Draw()
 {
 	// Draw the player
